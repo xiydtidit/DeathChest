@@ -1,30 +1,20 @@
 name: Build DeathChest Plugin
-on: 
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:  # Allows manual triggering
+on: [push, workflow_dispatch]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout code
       - uses: actions/checkout@v4
-
-      # Step 2: Set up Java
       - name: Set up Java 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      # Step 3: Build with Maven
       - name: Build with Maven
         run: mvn clean package
-
-      # Step 4: Upload artifact
-      - name: Upload Plugin
-        uses: actions/upload-artifact@v3
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4  # Critical fix
         with:
           name: DeathChest.jar
           path: target/*.jar
