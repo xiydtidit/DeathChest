@@ -1,0 +1,4 @@
+name: DeathChest
+main: com.example.deathchest.DeathChest
+version: 1.0
+api-version: 1.21
